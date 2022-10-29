@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +22,7 @@ public class FileUploadController {
 	private FileUploadService fileUploadService;
 	
 	@PostMapping
-	public ResponseEntity<FileUploadResponse> uploadFiles(UserForm userForm){
+	public ResponseEntity<FileUploadResponse> uploadFiles(@Valid UserForm userForm){
 		
 		String result = fileUploadService.save(userForm);
 		return new ResponseEntity<>(new FileUploadResponse(result),HttpStatus.CREATED);
